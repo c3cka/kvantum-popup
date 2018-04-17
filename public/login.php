@@ -6,7 +6,7 @@
  * Time: 11:06
  */
 
-require 'index.php';
+require APP_PATH . 'initialize.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (!isset($_POST['username'])) {
@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
   else {
     echo 'Successfully logged in';
+    $_SESSION['id'] = $user['id'];
     exit;
   }
 

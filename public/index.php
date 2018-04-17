@@ -8,10 +8,8 @@
 
 //phpinfo();
 //$baseUrl = 'kvantum-manual.local/';
-define('APP_PATH', '../');
 
-require APP_PATH.'application/config/db.php';
-require APP_PATH.'library/functions.php';
+require '../initialize.php';
 
 // CONNECTION TEST
 //$stmt = $conn->query('SELECT * FROM users');
