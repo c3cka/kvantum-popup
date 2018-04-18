@@ -6,7 +6,7 @@
  * Time: 11:06
  */
 
-require APP_PATH . 'initialize.php';
+require '../initialize.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (!isset($_POST['username'])) {
@@ -40,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <div class="container">
     <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
+    <input type="text" placeholder="Enter Username" name="username" required><br>
 
     <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
+    <input type="password" placeholder="Enter Password" name="password" required><br>
 
     <button type="submit">Login</button>
   </div>
