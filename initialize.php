@@ -8,3 +8,4 @@
 
 require 'application/config/db.php';
 require 'library/functions.php';
+include 'vendor/autoload.php';
