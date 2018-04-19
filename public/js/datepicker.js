@@ -5,25 +5,15 @@ $(function() {
     });
 });
 
-//$.datetimepicker.setLocale('hr');
 $(function () {
-  $("#datetimepickerfrom").datetimepicker({
-    format: 'd.m.Y H:i',
-    step: 5,
-    onShow: function (ct) {
-      this.setOptions({
-        maxDate: $("#datetimepickerto").val() ? $("#datetimepickerto").val() : false
-      })
-    }
+  $('#datetimepickerfrom').datetimepicker();
+  $('#datetimepickerto').datetimepicker({
+    useCurrent: false //Important! See issue #1075
   });
-  $("#datetimepickerto").datetimepicker({
-    format: 'd.m.Y H:i',
-    step: 5,
-    onShow: function (ct) {
-      console.log($("#datetimepickerfrom").val());
-      this.setOptions({
-        minDate: $("#datetimepickerfrom").val() ? $("#datetimepickerfrom").val() : new Date()
-      })
-    }
+  $("#datetimepickerfrom").on("dp.change", function (e) {
+    $('#datetimepickerto').data("DateTimePicker").minDate(e.date);
+  });
+  $("#datetimepickerto").on("dp.change", function (e) {
+    $('#datetimepickerfrom').data("DateTimePicker").maxDate(e.date);
   });
 });
