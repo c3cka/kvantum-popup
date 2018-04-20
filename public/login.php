@@ -50,9 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <body class="text-center">
     <form class="form-signin" id="login" action="login.php" method="post">
         <label class="sr-only" for="username">Username</label>
-        <input id="username" type="text" class="form-control" placeholder="Enter Username" required autofocus>
+        <input id="username" name="username" type="text" class="form-control" placeholder="Enter Username" required autofocus>
         <label class="sr-only" for="password">Password</label>
-        <input id="password" class="form-control" type="password" placeholder="Enter Password" required>
+        <input id="password" name="password" class="form-control" type="password" placeholder="Enter Password" required>
         <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
     </form>
   </body>
