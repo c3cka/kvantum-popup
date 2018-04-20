@@ -1,0 +1,17 @@
+.bootstrap-datetimepicker-widget table th.disabled, .bootstrap-datetimepicker-widget table th.disabled:hover {
+    background: none;
+    color: #c7c7c7;
+    cursor: not-allowed
+}
+
+.bootstrap-datetimepicker-widget table td.disabled, .bootstrap-datetimepicker-widget table td.disabled:hover {
+    background: none;
+    color: #c7c7c7;
+    cursor: not-allowed
+}
+
+.bootstrap-datetimepicker-widget table td span.disabled, .bootstrap-datetimepicker-widget table td i.disabled, .bootstrap-datetimepicker-widget table td span.disabled:hover, .bootstrap-datetimepicker-widget table td i.disabled:hover {
+    background: none;
+    color: #c7c7c7;
+    cursor: not-allowed
+}

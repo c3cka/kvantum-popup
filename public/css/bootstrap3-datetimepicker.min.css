@@ -14,12 +14,6 @@
     width: 19em
 }
 
-@media (min-width: 576px) {
-    .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
-        width: 38em
-    }
-}
-
 @media (min-width: 768px) {
     .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
         width: 38em
@@ -27,6 +21,12 @@
 }
 
 @media (min-width: 992px) {
+    .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
+        width: 38em
+    }
+}
+
+@media (min-width: 1200px) {
     .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
         width: 38em
     }
@@ -237,7 +237,7 @@
     line-height: inherit
 }
 
-.bootstrap-datetimepicker-widget .picker-switch td span, .bootstrap-datetimepicker-widget .picker-switch td i {
+.bootstrap-datetimepicker-widget .picker-switch td span {
     line-height: 2.5;
     height: 2.5em;
     width: 100%
@@ -250,8 +250,7 @@
 
 .bootstrap-datetimepicker-widget table td, .bootstrap-datetimepicker-widget table th {
     text-align: center;
-    border-radius: .25rem;
-    padding: .5em
+    border-radius: 4px
 }
 
 .bootstrap-datetimepicker-widget table th {
@@ -266,7 +265,7 @@
 
 .bootstrap-datetimepicker-widget table th.disabled, .bootstrap-datetimepicker-widget table th.disabled:hover {
     background: none;
-    color: #dee2e6;
+    color: #777;
     cursor: not-allowed
 }
 
@@ -299,7 +298,7 @@
 }
 
 .bootstrap-datetimepicker-widget table thead tr:first-child th:hover {
-    background: #f8f9fa
+    background: #eee
 }
 
 .bootstrap-datetimepicker-widget table td {
@@ -312,7 +311,7 @@
     font-size: .8em;
     height: 20px;
     line-height: 20px;
-    color: #dee2e6
+    color: #777
 }
 
 .bootstrap-datetimepicker-widget table td.day {
@@ -322,12 +321,12 @@
 }
 
 .bootstrap-datetimepicker-widget table td.day:hover, .bootstrap-datetimepicker-widget table td.hour:hover, .bootstrap-datetimepicker-widget table td.minute:hover, .bootstrap-datetimepicker-widget table td.second:hover {
-    background: #f8f9fa;
+    background: #eee;
     cursor: pointer
 }
 
 .bootstrap-datetimepicker-widget table td.old, .bootstrap-datetimepicker-widget table td.new {
-    color: #dee2e6
+    color: #777
 }
 
 .bootstrap-datetimepicker-widget table td.today {
@@ -339,7 +338,7 @@
     display: inline-block;
     border: solid transparent;
     border-width: 0 0 7px 7px;
-    border-bottom-color: #dee2e6;
+    border-bottom-color: #337ab7;
     border-top-color: rgba(0, 0, 0, 0.2);
     position: absolute;
     bottom: 4px;
@@ -347,8 +346,8 @@
 }
 
 .bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover {
-    background-color: #dee2e6;
-    color: #007bff;
+    background-color: #337ab7;
+    color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
 }
 
@@ -358,37 +357,37 @@
 
 .bootstrap-datetimepicker-widget table td.disabled, .bootstrap-datetimepicker-widget table td.disabled:hover {
     background: none;
-    color: #dee2e6;
+    color: #777;
     cursor: not-allowed
 }
 
-.bootstrap-datetimepicker-widget table td span, .bootstrap-datetimepicker-widget table td i {
+.bootstrap-datetimepicker-widget table td span {
     display: inline-block;
     width: 54px;
     height: 54px;
     line-height: 54px;
     margin: 2px 1.5px;
     cursor: pointer;
-    border-radius: .25rem
+    border-radius: 4px
 }
 
-.bootstrap-datetimepicker-widget table td span:hover, .bootstrap-datetimepicker-widget table td i:hover {
-    background: #f8f9fa
+.bootstrap-datetimepicker-widget table td span:hover {
+    background: #eee
 }
 
-.bootstrap-datetimepicker-widget table td span.active, .bootstrap-datetimepicker-widget table td i.active {
-    background-color: #dee2e6;
-    color: #007bff;
+.bootstrap-datetimepicker-widget table td span.active {
+    background-color: #337ab7;
+    color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
 }
 
-.bootstrap-datetimepicker-widget table td span.old, .bootstrap-datetimepicker-widget table td i.old {
-    color: #dee2e6
+.bootstrap-datetimepicker-widget table td span.old {
+    color: #777
 }
 
-.bootstrap-datetimepicker-widget table td span.disabled, .bootstrap-datetimepicker-widget table td i.disabled, .bootstrap-datetimepicker-widget table td span.disabled:hover, .bootstrap-datetimepicker-widget table td i.disabled:hover {
+.bootstrap-datetimepicker-widget table td span.disabled, .bootstrap-datetimepicker-widget table td span.disabled:hover {
     background: none;
-    color: #dee2e6;
+    color: #777;
     cursor: not-allowed
 }
 

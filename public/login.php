@@ -33,19 +33,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-<style>
-  <?php include 'css/login.css'?>
-</style>
-<form id="login" action="login.php" method="post">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <div class="container">
-    <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required><br>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </head>
 
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required><br>
-
-    <button type="submit">Login</button>
-  </div>
-
-</form>
+  <body class="text-center">
+    <form class="form-signin" id="login" action="login.php" method="post">
+        <label class="sr-only" for="username">Username</label>
+        <input id="username" type="text" class="form-control" placeholder="Enter Username" required autofocus>
+        <label class="sr-only" for="password">Password</label>
+        <input id="password" class="form-control" type="password" placeholder="Enter Password" required>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+    </form>
+  </body>
+</html>

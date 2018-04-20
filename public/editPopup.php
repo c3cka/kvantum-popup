@@ -1,11 +1,13 @@
 <head>
   <link rel="stylesheet" href="css/jquery-ui.min.css">
-  <link rel="stylesheet" href="js/datetimepicker-master/jquery.datetimepicker.css"/>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
   <script src="js/jquery-3.3.1.js"></script>
-  <script src="js/jquery-ui.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
   <script src="js/datepicker.js"></script>
-  <script src="js/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
-  <!--  <script src="js/datetimepicker-master/jquery.js"></script>-->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/bootstrap-datetimepicker.min.js"></script>
 </head>
 
 <?php
