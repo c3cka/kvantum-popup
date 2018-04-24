@@ -7,7 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $output = '';
   $message = '';
 
-  $id = uniqueId();
   $title = $_POST['title'];
   $description = $_POST['description'];
 
@@ -17,7 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $validFrom = strtotime($_POST['valid_from']);
   $validTo = strtotime($_POST['valid_to']);
 
-  if ($_POST['popup_id'] != '') {
+  if (isset($_POST['popup_id'])) {
+    $id = $_POST['popup_id'];
     $result = $conn->prepare('UPDATE popup 
     SET title=:title, description=:description, image=:image, valid_from=:valid_from, valid_to=:valid_to
     WHERE id=:id');
@@ -30,14 +30,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $message = 'Popup updated!';
   } else {
+    $id = uniqueId();
+
     $result = $conn->prepare('INSERT INTO popup (id, title, description, image, valid_from, valid_to) 
     VALUES (:id, :title, :description, :image, :valid_from, :valid_to)');
-    $result->bindParam(':id', $id);
-    $result->bindParam(':title', $title);
+    $result->bindParam('id', $id);
+    $result->bindParam('title', $title);
     $result->bindParam('image', $image);
-    $result->bindParam(':description', $description);
-    $result->bindParam(':valid_from', $validFrom);
-    $result->bindParam(':valid_to', $validTo);
+    $result->bindParam('description', $description);
+    $result->bindParam('valid_from', $validFrom);
+    $result->bindParam('valid_to', $validTo);
 
     $message = 'Popup added!';
   }
