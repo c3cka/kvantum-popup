@@ -1,0 +1,6 @@
+.modal-lg {
+    max-width: 80% !important;
+}
+#output_image {
+    max-width: 300px;
+}

@@ -25,6 +25,7 @@ $popups = $result->fetchAll(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="css/custom_datepicker.css">
   <link rel="stylesheet" href="css/fontawesome-all.css">
   <link rel="stylesheet" href="DataTables/datatables.min.css">
+  <link rel="stylesheet" href="css/custom.css">
   <script src="js/popper.js"></script>
   <script src="js/jquery-3.3.1.js"></script>
   <script src="js/datepicker.js"></script>
@@ -35,10 +36,8 @@ $popups = $result->fetchAll(PDO::FETCH_ASSOC);
   <script src="DataTables/datatables.min.js"></script>
   <script src="js/ellipsis.js"></script>
   <script src="js/bootbox.min.js"></script>
+  <script src="ckeditor/ckeditor.js"></script>
   <script src="js/custom.js"></script>
-
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-
 </head>
 
 <body>
@@ -53,11 +52,11 @@ $popups = $result->fetchAll(PDO::FETCH_ASSOC);
     <table class="table table-hover table-striped display nowrap" id="popup" width="100%">
       <thead class="thead-dark">
         <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Valid from</th>
-          <th>Valid to</th>
-          <th>Options</th>
+          <th width="10%">Title</th>
+          <th width="50%">Description</th>
+          <th width="10%">Valid from</th>
+          <th width="10%">Valid to</th>
+          <th width="10%">Options</th>
         </tr>
       </thead>
       <tbody>
@@ -88,35 +87,40 @@ $popups = $result->fetchAll(PDO::FETCH_ASSOC);
 
   <!-- START ADD POPUP MODAL -->
   <div id="addPopupModal" class="modal fade">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <form id="addPopup" action="addPopup.php" method="post">
+        <form id="addPopup" action="addPopup.php" method="post" enctype="multipart/form-data">
           <div class="modal-header">
             <h4 class="modal-title">Add Popup</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
             <div class="form-group row">
-              <label class="col-sm-3 control-label" for="title"><b>Title</b></label>
-              <div class="col-sm-9">
+              <label class="col-sm-2 control-label" for="title"><b>Title</b></label>
+              <div class="col-sm-10">
                 <input id="title" class="form-control" type="text" name="title" required>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-3 control-label" for="description"><b>Description</b></label>
-              <div class="col-sm-9">
-                <textarea id="description" class="form-control" name="description" rows="10" cols="100"></textarea>
+              <label class="col-sm-2 control-label" for="description"><b>Description</b></label>
+              <div class="col-sm-10">
+                <textarea id="description" class="form-control" name="description" rows="10"
+                  cols="100"></textarea>
+                <script>
+                  CKEDITOR.replace('description');
+                </script>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-3 control-label" for="image"><b>Image</b></label>
-              <div class="col-sm-9">
-                <input id="image" class="form-control" type="text" name="image">
+              <label class="col-sm-2 control-label" for="image"><b>Image</b></label>
+              <div class="col-sm-10">
+                <input id="image" class="form-control" type="file" name="image" accept="image/*"
+                  onchange="preview_image(event)"><img id="output_image"/>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-3 control-label" for="datetimepickerfrom"><b>Valid from</b></label>
-              <div class="col-sm-9 input-group date" id="datetimepickerfrom">
+              <label class="col-sm-2 control-label" for="datetimepickerfrom"><b>Valid from</b></label>
+              <div class="col-sm-10 input-group date" id="datetimepickerfrom">
                 <input id="valid_from" class="form-control" type="text" name="valid_from" required>
                 <div class="input-group-append input-group-addon">
                 <span class="input-group-text">
@@ -126,8 +130,8 @@ $popups = $result->fetchAll(PDO::FETCH_ASSOC);
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-3 control-label" for="datetimepickerto"><b>Valid to</b></label>
-              <div class="col-sm-9 input-group date" id="datetimepickerto">
+              <label class="col-sm-2 control-label" for="datetimepickerto"><b>Valid to</b></label>
+              <div class="col-sm-10 input-group date" id="datetimepickerto">
                 <input id="valid_to" class="form-control" type="text" name="valid_to" required>
                 <div class="input-group-append input-group-addon">
                 <span class="input-group-text">
@@ -173,28 +177,4 @@ $popups = $result->fetchAll(PDO::FETCH_ASSOC);
   </div>
   <!-- END DELETE POPUP MODAL -->
 
-  <!-- START PREVIEW MODAL -->
-  <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Popup preview</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- POPUP PREVIEW -->
-
-          <!-- POPUP PREVIEW -->
-        </div>
-        <!--        <div class="modal-footer">-->
-        <!--          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-        <!--          <button type="button" class="btn btn-primary">Save changes</button>-->
-        <!--        </div>-->
-      </div>
-    </div>
-  </div>
-  <!-- END MODAL -->
 </body>

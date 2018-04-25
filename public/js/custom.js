@@ -13,8 +13,9 @@ $(document).ready(function(){
       dataType:"json",
       success:function(data){
         $('#title').val(data.title);
-        $('#description').val(data.description);
-        $('#image').val(data.image);
+        CKEDITOR.instances['description'].setData(data.description);
+        //$('#description').val(data.description);
+        $('#image').attr('src', 'upload/' + data.image);
         $('#valid_from').val(data.valid_from);
         $('#valid_to').val(data.valid_to);
         $('#popup_id').val(data.id);
@@ -29,7 +30,7 @@ $(document).ready(function(){
       url: 'administratePopup.php',
       method: 'POST',
       data: {popup_id:popup_id}
-    })
+    });
   })
   // $('#addPopup').on("submit", function(event){
   //   event.preventDefault();
@@ -119,6 +120,20 @@ $(document).ready(function () {
         "sSortAscending":  ": aktiviraj za rastući poredak",
           "sSortDescending": ": aktiviraj za padajući poredak"
       }
-    }
+    },
+    columns: [
+
+    ]
   });
 });
+
+function preview_image(event)
+{
+  var reader = new FileReader();
+  reader.onload = function()
+  {
+    var output = document.getElementById('output_image');
+    output.src = reader.result;
+  };
+  reader.readAsDataURL(event.target.files[0]);
+}
