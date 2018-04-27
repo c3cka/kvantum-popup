@@ -7,7 +7,16 @@
  */
 
 require '../initialize.php';
+session_start();
 
+if (isset($_SESSION['market_id'])) {
+  $result = $conn->prepare('SELECT * FROM users WHERE id = :id');
+  if ($result->execute(['id' => $_SESSION['market_id']]) == 0) {
+    echo '<div class="alert alert-danger" role="alert">Not a user</div>';
+  } else {
+    header('Location: administratePopup.php');
+  }
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (!isset($_POST['username'])) {
     echo 'Username must be entered';
@@ -21,15 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $user = $result->fetch(PDO::FETCH_ASSOC);
 
   if ($username != $user['username'] || 'sha1:' . sha1($password . '--' . $user['id']) != $user['password']) {
-    echo 'Invalid username or password';
-    exit;
+    echo '<div class="alert alert-danger" role="alert">Invalid username and password</div>';
   }
   else {
     echo 'Successfully logged in';
-    $_SESSION['id'] = $user['id'];
-    exit;
+    $_SESSION['market_id'] = $user['id'];
+    header('Location: administratePopup.php');
   }
-
 }
 
 ?>

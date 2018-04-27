@@ -11,10 +11,10 @@ require '../initialize.php';
 if (isset($_POST['popup_id'])) {
   $delete = $conn->prepare('DELETE FROM popup WHERE id = :id');
   $delete->execute(['id' => $_POST['popup_id']]);
-  echo 'Popup with id ' . $_POST['popup_id'] . ' deleted!';
+  echo '<div class="alert alert-success" role="alert">Popup deleted!</div>';
 }
 
-$result = $conn->prepare('SELECT * FROM popup');
+$result = $conn->prepare('SELECT * FROM popup ');
 $result->execute();
 $popups = $result->fetchAll(PDO::FETCH_ASSOC);
 
@@ -45,34 +45,37 @@ $popups = $result->fetchAll(PDO::FETCH_ASSOC);
   <div class="table-responsive-sm">
     <br />
     <div align="right">
-      <button type="button" id="addPopup" data-toggle="modal" data-target="#addPopupModal"
-        class="btn btn-info btn-lg">Add new</button>
+      <a type="button" id="addPopup" href="addPopup.php" class="btn btn-info"><span class="fa fa-plus"></span> Add
+        new</a>
+      <a type="button" id="logout" href="logout.php" class="btn btn-warning"><span class="fa fa-sign-out-alt"></span>
+        Logout</a>
     </div>
     <br /><br />
     <table class="table table-hover table-striped display nowrap" id="popup" width="100%">
       <thead class="thead-dark">
         <tr>
+          <th width="2%">No.</th>
           <th width="10%">Title</th>
           <th width="50%">Description</th>
           <th width="10%">Valid from</th>
           <th width="10%">Valid to</th>
-          <th width="10%">Options</th>
+          <th width="8%">Options</th>
         </tr>
       </thead>
       <tbody>
       <?php foreach ($popups as $popup) { ?>
         <tr>
+          <td><?php echo $popup['_id']; ?></td>
           <td><?php echo $popup['title']; ?></td>
-          <td><?php echo $popup['description']; ?></td>
+          <td><?php echo textsummary($popup['description'], 50); ?></td>
           <td><?php echo date('d.m.Y H:i', $popup['valid_from']); ?></td>
           <td><?php echo date('d.m.Y H:i', $popup['valid_to']); ?></td>
           <td>
-            <a class="btn btn-primary editButton" data-toggle="modal" data-target="#addPopupModal" name="edit"
-                data-id="<?php echo $popup['id']; ?>">
+            <a class="btn btn-primary" name="edit" href="editPopup.php?id=<?php echo $popup['id']; ?>" title="Edit">
               <span class="fa fa-edit"></span>
             </a>
             <a class="btn btn-danger deleteButton" data-toggle="modal" data-target="#deleteModal" name="delete"
-              data-id="<?php echo $popup['id']; ?>">
+              title="Delete" data-id="<?php echo $popup['id']; ?>">
               <span class="fa fa-trash-alt"></span>
             </a>
             <a class="btn btn-success" data-toggle="modal" data-target="#previewModal" title="Preview">
@@ -84,74 +87,6 @@ $popups = $result->fetchAll(PDO::FETCH_ASSOC);
       </tbody>
     </table>
   </div>
-
-  <!-- START ADD POPUP MODAL -->
-  <div id="addPopupModal" class="modal fade">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <form id="addPopup" action="addPopup.php" method="post" enctype="multipart/form-data">
-          <div class="modal-header">
-            <h4 class="modal-title">Add Popup</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group row">
-              <label class="col-sm-2 control-label" for="title"><b>Title</b></label>
-              <div class="col-sm-10">
-                <input id="title" class="form-control" type="text" name="title" required>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-2 control-label" for="description"><b>Description</b></label>
-              <div class="col-sm-10">
-                <textarea id="description" class="form-control" name="description" rows="10"
-                  cols="100"></textarea>
-                <script>
-                  CKEDITOR.replace('description');
-                </script>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-2 control-label" for="image"><b>Image</b></label>
-              <div class="col-sm-10">
-                <input id="image" class="form-control" type="file" name="image" accept="image/*"
-                  onchange="preview_image(event)"><img id="output_image"/>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-2 control-label" for="datetimepickerfrom"><b>Valid from</b></label>
-              <div class="col-sm-10 input-group date" id="datetimepickerfrom">
-                <input id="valid_from" class="form-control" type="text" name="valid_from" required>
-                <div class="input-group-append input-group-addon">
-                <span class="input-group-text">
-                  <span class="fa fa-calendar-alt"></span>
-                </span>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-2 control-label" for="datetimepickerto"><b>Valid to</b></label>
-              <div class="col-sm-10 input-group date" id="datetimepickerto">
-                <input id="valid_to" class="form-control" type="text" name="valid_to" required>
-                <div class="input-group-append input-group-addon">
-                <span class="input-group-text">
-                  <span class="fa fa-calendar-alt"></span>
-                </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <input type="hidden" name="popup_id" id="popup_id">
-            <input type="submit" class="btn btn-success" name="insert" id="insert" value="Save">
-            <button type="reset" class="btn btn-danger">Reset</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <!-- END ADD POPUP MODAL -->
 
   <!-- START DELETE POPUP MODAL -->
   <div id="deleteModal" class="modal fade">

@@ -4,3 +4,6 @@
 #output_image {
     max-width: 300px;
 }
+#description {
+    width: 600px;
+}
