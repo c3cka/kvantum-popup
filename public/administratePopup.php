@@ -78,7 +78,8 @@ $popups = $result->fetchAll(PDO::FETCH_ASSOC);
               title="Delete" data-id="<?php echo $popup['id']; ?>">
               <span class="fa fa-trash-alt"></span>
             </a>
-            <a class="btn btn-success" data-toggle="modal" data-target="#previewModal" title="Preview">
+            <a class="btn btn-success preview" title="Preview" href="previewNoCookie.php?id="<?php echo $popup['id'];
+            ?>">
               <span class="fa fa-eye"></span>
             </a>
           </td>

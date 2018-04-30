@@ -15,24 +15,29 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>Options</title>
+    <title>Popup preview Cookie</title>
 
-    <link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
-    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/custom_datepicker.css">
+    <link rel="stylesheet" href="css/fontawesome-all.css">
+    <link rel="stylesheet" href="DataTables/datatables.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="ckeditor/contents.css">
+    <script src="js/popper.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/datepicker.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/moment-with-locales.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="DataTables/datatables.min.js"></script>
+    <script src="js/ellipsis.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="ckeditor/ckeditor.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/custom.js"></script>
 
-    <link rel="stylesheet" href="/media/css/site.css?_=19472395a2969da78c8a4c707e72123a">
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" type="text/css" href="/media/css/ie.css" />
-    <![endif]-->
-
-    <style>
-
-    </style>
-
-    <script src="/media/js/site.js?_=30af62656a8280c8984f7320f0cc0923"></script>
-    <script src="/media/js/dynamic.php?comments-page=manual%2Foptions" async></script>
-
-    <script src="js/jquery.bpopup.min.js"></script>
   </head>
   <body class="comments">
     <a name="top"></a>
@@ -231,16 +236,18 @@ $('#example').DataTable( {
     </div>
 
 
-    <div id="popup" name="popup" style="display: none;">
-      <span class="button b-close"><span>X</span></span>
-      <div class="content">IGOR KOS</div>
+    <div id="popupModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body">
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <script>
-      $('#popup').bPopup({
-        contentContainer: '.content',
-        loadUrl: 'test.html'
-      });
-    </script>
+    <button onclick="alertCookie()">Show cookie value</button>
+
   </body>
 </html>
